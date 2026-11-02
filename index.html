@@ -40,20 +40,20 @@ button{touch-action:manipulation}
 </header>
 <main class="flex-1 w-full max-w-4xl mx-auto px-3 sm:px-4 py-4 sm:py-6 flex flex-col gap-4 sm:gap-6">
   <section class="bg-earth-50/90 border border-earth-200/80 rounded-2xl p-4 shadow-sm">
-    <div class="flex items-center justify-between mb-3 text-xs font-semibold uppercase tracking-wider text-earth-700"><span id="pose-step-indicator">Pose 1 of 12</span><span id="round-indicator">Round 1</span></div>
+    <div class="flex items-center justify-between mb-3 text-xs font-semibold uppercase tracking-wider text-earth-700"><span id="pose-step-indicator">Pose 1 of 12</span><span id="round-indicator" class="text-sage-700 font-bold">Round 1</span></div>
     <div class="grid grid-cols-12 gap-1.5 h-2" id="progress-bars"></div>
   </section>
 
   <section class="bg-earth-50 border border-earth-200 rounded-3xl p-4 sm:p-8 shadow-sm flex flex-col items-center relative overflow-hidden">
     <div id="breath-pill" class="flex items-center gap-2 px-4 py-1.5 rounded-full border mb-5 sm:mb-6 text-sm font-semibold tracking-wide shadow-sm">
-      <svg id="breath-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 14l7 7m0 0l7-7"/></svg>
+      <svg id="breath-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
       <span id="breath-cue-text">NORMAL BREATH</span>
     </div>
     <div class="relative w-48 h-48 sm:w-64 sm:h-64 flex items-center justify-center my-2">
       <div id="pacer-outer" class="absolute inset-0 rounded-full bg-sage-200/50 pulse-glow transition-all"></div>
       <div id="pacer-middle" class="absolute w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-sage-100 border border-sage-400/40 transition-all"></div>
       <div id="pose-graphic-container" class="relative z-10 w-32 h-32 sm:w-36 sm:h-36 flex items-center justify-center drop-shadow-md text-sage-800"></div>
-      <div class="absolute -bottom-2 bg-earth-900 text-earth-50 px-4 py-1 rounded-full text-base font-mono font-bold shadow-md z-20 flex items-center gap-1"><span id="pose-timer-seconds">6</span><span class="text-[10px] tracking-[0.2em] uppercase">s</span></div>
+      <div class="absolute -bottom-2 bg-earth-900 text-earth-50 px-4 py-1 rounded-full text-base font-mono font-bold shadow-md z-20 flex items-center gap-1"><span id="pose-timer-seconds">6</span><span class="text-xs text-earth-300 font-sans font-normal">sec</span></div>
     </div>
     <div class="text-center mt-6">
       <p id="pose-sanskrit" class="text-sage-700 font-medium tracking-wide text-sm sm:text-base italic font-serif">Pranamasana</p>
@@ -65,7 +65,7 @@ button{touch-action:manipulation}
   <section class="bg-earth-50 border border-earth-200 rounded-3xl p-4 sm:p-5 shadow-sm space-y-4">
     <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
       <button id="btn-prev" aria-label="Previous pose" class="p-3 rounded-full bg-earth-200/80 hover:bg-earth-300/80 active:scale-95 text-earth-800">‹</button>
-      <button id="btn-play-pause" class="px-5 sm:px-8 py-3 sm:py-4 rounded-full bg-sage-600 hover:bg-sage-700 text-earth-50 font-semibold tracking-wide shadow-md active:scale-95 transition flex items-center gap-2">
+      <button id="btn-play-pause" class="px-5 sm:px-8 py-3 sm:py-4 rounded-full bg-sage-600 hover:bg-sage-700 text-earth-50 font-semibold tracking-wide shadow-md active:scale-95 transition flex items-center justify-center gap-2 text-sm sm:text-base">
         <span id="play-icon">▶</span><span id="play-label">Start Practice</span>
       </button>
       <button id="btn-next" aria-label="Next pose" class="p-3 rounded-full bg-earth-200/80 hover:bg-earth-300/80 active:scale-95 text-earth-800">›</button>
@@ -75,7 +75,8 @@ button{touch-action:manipulation}
     <div class="pt-3 border-t border-earth-200 flex flex-col sm:flex-row flex-wrap items-start sm:items-center justify-between gap-3 text-xs sm:text-sm">
       <button id="btn-toggle-voice" class="px-3 py-2 rounded-xl bg-earth-100 border border-earth-200/70">Voice Guide: <strong id="voice-status-text" class="text-sage-700">On</strong></button>
       <div class="flex items-center gap-2"><span class="text-earth-700 font-medium">Duration:</span><div class="inline-flex rounded-lg border border-earth-200 p-0.5 bg-earth-100">
-        <button data-duration="4" class="duration-btn px-2.5 py-1 rounded-md">4s</button><button data-duration="6" class="duration-btn px-2.5 py-1 rounded-md bg-sage-600 text-white">6s</button><button data-duration="8" class="duration-btn px-2.5 py-1 rounded-md">8s</button></div></div>
+        <button data-duration="4" class="duration-btn px-2.5 py-1 rounded-md">4s</button><button data-duration="6" class="duration-btn px-2.5 py-1 rounded-md bg-sage-600 text-white">6s</button><button data-duration="8" class="duration-btn px-2.5 py-1 rounded-md">8s</button><button data-duration="10" class="duration-btn px-2.5 py-1 rounded-md">10s</button>
+      </div></div>
       <button id="btn-toggle-sound" class="px-3 py-2 rounded-xl bg-earth-100 border border-earth-200/70">🔔 <span id="sound-status-text">Chime: On</span></button>
     </div>
     <p id="wake-status" class="text-center text-xs text-earth-700" aria-live="polite">Screen stays awake during practice when supported by your browser.</p>
@@ -90,18 +91,18 @@ button{touch-action:manipulation}
 
 <script>
 const POSES = [
-{id:1,sanskrit:"Pranamasana",english:"Prayer Pose",breath:"Normal Breath",breathType:"neutral",voicePrompt:"Pose 1. Prayer pose. Pranamasana. Exhale slowly and center yourself.",instruction:"Stand straight, feet together. Bring palms together in front of your chest in prayer.",svg:`<path d="M45 75V40M45 40l-12 12M45 40l12 12M30 54h30"/><circle cx="45" cy="30" r="8"/>`},
-{id:2,sanskrit:"Hasta Uttanasana",english:"Raised Arms Pose",breath:"Inhale",breathType:"inhale",voicePrompt:"Pose 2. Inhale. Raised arms pose. Arch gently backwards.",instruction:"Breathe in deeply, lift your arms overhead and gently arch back.",svg:`<path d="M30 38l15-12 15 12M20 60l25-20 25 20M45 60V75"/><path d="M30 38v12M60 38v12"/>`},
-{id:3,sanskrit:"Padahastasana",english:"Hand to Foot Pose",breath:"Exhale",breathType:"exhale",voicePrompt:"Pose 3. Exhale. Forward bend. Lower your hands beside your feet.",instruction:"Exhale completely, hinge at the hips, and lower your hands beside your feet.",svg:`<path d="M20 54l25-18 25 18M25 64H65M45 36V75"/><path d="M35 36l10 18 10-18"/>`},
-{id:4,sanskrit:"Ashwa Sanchalanasana",english:"Equestrian Pose",breath:"Inhale",breathType:"inhale",voicePrompt:"Pose 4. Inhale. Step right leg back. Look upwards.",instruction:"Breathe in, step the right leg back, lower the knee, and lift the chest upward.",svg:`<path d="M30 72L48 32L62 72M45 52h20M38 52l-12-12M56 72V48"/><circle cx="50" cy="28" r="7"/>`},
-{id:5,sanskrit:"Dandasana",english:"Plank Pose",breath:"Hold Breath",breathType:"neutral",voicePrompt:"Pose 5. Step back to Plank pose. Keep a steady spine and breathe comfortably.",instruction:"Step back into a plank, keep the body long and the core active.",svg:`<path d="M18 65L45 18L72 65M28 50h34M35 30h20"/><path d="M45 18v47"/>`},
-{id:6,sanskrit:"Ashtanga Namaskara",english:"Eight-Limbed Pose",breath:"Exhale",breathType:"exhale",voicePrompt:"Pose 6. Exhale. Lower knees, chest, and chin toward the floor.",instruction:"Lower the knees, chest, and chin to the floor, keeping the hips lifted.",svg:`<path d="M25 68l20-42 20 42M35 60h20M45 62V82"/><path d="M30 68L45 54L60 68"/>`},
-{id:7,sanskrit:"Bhujangasana",english:"Cobra Pose",breath:"Inhale",breathType:"inhale",voicePrompt:"Pose 7. Inhale. Slide forward into Cobra pose. Open the chest.",instruction:"Inhale, slide forward, and gently lift the chest while keeping the hips grounded.",svg:`<path d="M20 72C30 60 38 52 45 48C53 52 60 60 70 72M45 48V24M32 30c7-8 13-10 20-6"/><path d="M45 24l12 11"/>`},
-{id:8,sanskrit:"Adho Mukha Svanasana",english:"Downward-Facing Dog",breath:"Exhale",breathType:"exhale",voicePrompt:"Pose 8. Exhale. Lift hips high into Downward-Facing Dog.",instruction:"Exhale and lift the hips high, pressing the palms and feet firmly into the floor.",svg:`<path d="M22 60L45 20L68 60M28 52h34M20 68h50"/><path d="M38 56L45 66L52 56"/>`},
-{id:9,sanskrit:"Ashwa Sanchalanasana",english:"Equestrian Pose (Left Forward)",breath:"Inhale",breathType:"inhale",voicePrompt:"Pose 9. Inhale. Step the right foot forward between your hands.",instruction:"Inhale, step the right foot forward between your hands and lift the chest upward.",svg:`<path d="M30 72L48 32L62 72M45 52h20M38 52l-12-12M56 72V48"/><circle cx="50" cy="28" r="7"/>`},
-{id:10,sanskrit:"Padahastasana",english:"Hand to Foot Pose",breath:"Exhale",breathType:"exhale",voicePrompt:"Pose 10. Exhale. Bring the back foot forward into a standing forward fold.",instruction:"Exhale and bring the back foot forward, folding gently from the hips.",svg:`<path d="M20 54l25-18 25 18M25 64H65M45 36V75"/><path d="M35 36l10 18 10-18"/>`},
-{id:11,sanskrit:"Hasta Uttanasana",english:"Raised Arms Pose",breath:"Inhale",breathType:"inhale",voicePrompt:"Pose 11. Inhale. Rise up, stretching arms overhead.",instruction:"Inhale and rise slowly, reaching your arms overhead with a lifted chest.",svg:`<path d="M30 38l15-12 15 12M20 60l25-20 25 20M45 60V75"/><path d="M30 38v12M60 38v12"/>`},
-{id:12,sanskrit:"Pranamasana",english:"Prayer Pose / Mountain",breath:"Exhale",breathType:"exhale",voicePrompt:"Pose 12. Exhale. Return to center prayer. Complete round.",instruction:"Exhale gently and return to a centered prayer pose, completing the round.",svg:`<path d="M45 75V40M45 40l-12 12M45 40l12 12M30 54h30"/><circle cx="45" cy="30" r="8"/>`}
+{ id:1,sanskrit:"Pranamasana",english:"Prayer Pose",breath:"Normal Breath",breathType:"neutral",voicePrompt:"Pose 1. Prayer pose. Pranamasana. Exhale slowly and center yourself.",instruction:"Stand straight, feet together. Bring palms together in front of your chest in prayer.",svg:'<circle cx="50" cy="18" r="6"/><line x1="50" y1="24" x2="50" y2="60"/><path d="M50 32 L44 42 L50 48 L56 42 Z"/><line x1="50" y1="60" x2="45" y2="92"/><line x1="50" y1="60" x2="55" y2="92"/><line x1="42" y1="92" x2="58" y2="92"/>'},
+{ id:2,sanskrit:"Hasta Uttanasana",english:"Raised Arms Pose",breath:"Inhale",breathType:"inhale",voicePrompt:"Pose 2. Inhale. Raised arms pose. Arch gently backwards.",instruction:"Breathe in deeply, stretch both arms overhead and gently arch backward from the pelvis.",svg:'<circle cx="43" cy="19" r="6"/><path d="M43 25 Q48 42 46 62 M44 32 L34 14 M44 32 L30 17"/><line x1="46" y1="62" x2="44" y2="92"/><line x1="46" y1="62" x2="51" y2="92"/><line x1="40" y1="92" x2="56" y2="92"/>'},
+{ id:3,sanskrit:"Padahastasana",english:"Hand to Foot Pose",breath:"Exhale",breathType:"exhale",voicePrompt:"Pose 3. Exhale. Forward bend. Lower your hands beside your feet.",instruction:"Exhale completely, bending forward from the hips. Keep knees soft and place hands beside your feet as comfortable.",svg:'<circle cx="34" cy="62" r="6"/><path d="M48 90 L52 50 L38 60"/><line x1="38" y1="60" x2="35" y2="90"/><line x1="52" y1="50" x2="52" y2="90"/><line x1="28" y1="90" x2="60" y2="90"/>'},
+{ id:4,sanskrit:"Ashwa Sanchalanasana",english:"Equestrian Pose",breath:"Inhale",breathType:"inhale",voicePrompt:"Pose 4. Inhale. Step right leg back. Look upwards.",instruction:"Breathe in, step the right leg back, lower the right knee if comfortable, and lift your chest and gaze.",svg:'<circle cx="58" cy="30" r="6"/><path d="M58 36 L52 55 L35 55 L32 75 M52 55 L75 70 L90 75"/><line x1="48" y1="45" x2="33" y2="75"/><line x1="15" y1="75" x2="95" y2="75"/>'},
+{ id:5,sanskrit:"Dandasana",english:"Plank Pose",breath:"Hold Breath",breathType:"neutral",voicePrompt:"Pose 5. Step back to Plank pose. Keep a steady spine and breathe comfortably.",instruction:"Step the other leg back into a steady plank. Keep your body aligned and breathe naturally; do not force breath retention.",svg:'<circle cx="28" cy="36" r="6"/><line x1="32" y1="40" x2="78" y2="60"/><line x1="40" y1="44" x2="40" y2="74"/><line x1="78" y1="60" x2="82" y2="74"/><line x1="20" y1="74" x2="90" y2="74"/>'},
+{ id:6,sanskrit:"Ashtanga Namaskara",english:"Eight-Limbed Pose",breath:"Exhale",breathType:"exhale",voicePrompt:"Pose 6. Exhale. Lower knees, chest, and chin toward the floor.",instruction:"Lower knees, chest, and chin toward the mat, keeping hips slightly lifted. Modify as needed.",svg:'<circle cx="25" cy="54" r="5"/><path d="M28 62 L40 68 L56 50 L75 66 L86 68"/><line x1="36" y1="60" x2="35" y2="70"/><line x1="15" y1="70" x2="92" y2="70"/>'},
+{ id:7,sanskrit:"Bhujangasana",english:"Cobra Pose",breath:"Inhale",breathType:"inhale",voicePrompt:"Pose 7. Inhale. Slide forward into Cobra pose. Open the chest.",instruction:"Inhale, slide forward and lift your chest into Cobra. Keep shoulders away from ears and use a comfortable height.",svg:'<circle cx="34" cy="35" r="6"/><path d="M34 41 Q40 56 60 65 L88 68"/><line x1="40" y1="50" x2="36" y2="68"/><line x1="20" y1="68" x2="92" y2="68"/>'},
+{ id:8,sanskrit:"Adho Mukha Svanasana",english:"Downward-Facing Dog",breath:"Exhale",breathType:"exhale",voicePrompt:"Pose 8. Exhale. Lift hips high into Downward-Facing Dog.",instruction:"Exhale and press into your hands, lifting hips toward the ceiling. Bend knees as needed.",svg:'<circle cx="32" cy="62" r="5"/><line x1="36" y1="60" x2="52" y2="35"/><line x1="52" y1="35" x2="75" y2="70"/><line x1="36" y1="60" x2="30" y2="70"/><line x1="20" y1="70" x2="88" y2="70"/>'},
+{ id:9,sanskrit:"Ashwa Sanchalanasana",english:"Equestrian Pose (Left Forward)",breath:"Inhale",breathType:"inhale",voicePrompt:"Pose 9. Inhale. Step the right foot forward between your hands.",instruction:"Inhale, bring the right foot forward between your hands, lower the back knee if comfortable, and lift your gaze.",svg:'<circle cx="58" cy="30" r="6"/><path d="M58 36 L52 55 L35 55 L32 75 M52 55 L75 70 L90 75"/><line x1="48" y1="45" x2="33" y2="75"/><line x1="15" y1="75" x2="95" y2="75"/>'},
+{ id:10,sanskrit:"Padahastasana",english:"Hand to Foot Pose",breath:"Exhale",breathType:"exhale",voicePrompt:"Pose 10. Exhale. Bring the back foot forward into a standing forward fold.",instruction:"Exhale, step the back foot forward to meet the other foot and fold comfortably over your legs.",svg:'<circle cx="34" cy="62" r="6"/><path d="M48 90 L52 50 L38 60"/><line x1="38" y1="60" x2="35" y2="90"/><line x1="52" y1="50" x2="52" y2="90"/><line x1="28" y1="90" x2="60" y2="90"/>'},
+{ id:11,sanskrit:"Hasta Uttanasana",english:"Raised Arms Pose",breath:"Inhale",breathType:"inhale",voicePrompt:"Pose 11. Inhale. Rise up, stretching arms overhead.",instruction:"Inhale and rise slowly, extending both arms overhead with a gentle, comfortable back arch.",svg:'<circle cx="43" cy="19" r="6"/><path d="M43 25 Q48 42 46 62 M44 32 L34 14 M44 32 L30 17"/><line x1="46" y1="62" x2="44" y2="92"/><line x1="46" y1="62" x2="51" y2="92"/><line x1="40" y1="92" x2="56" y2="92"/>'},
+{ id:12,sanskrit:"Pranamasana",english:"Prayer Pose / Mountain",breath:"Exhale",breathType:"exhale",voicePrompt:"Pose 12. Exhale. Return to center prayer. Complete round.",instruction:"Exhale gently and bring your palms together at your heart. Pause and notice how you feel.",svg:'<circle cx="50" cy="18" r="6"/><line x1="50" y1="24" x2="50" y2="60"/><path d="M50 32 L44 42 L50 48 L56 42 Z"/><line x1="50" y1="60" x2="45" y2="92"/><line x1="50" y1="60" x2="55" y2="92"/><line x1="42" y1="92" x2="58" y2="92"/>'}
 ];
 
 let currentPoseIndex=0, roundCount=1, poseDuration=6, timeLeft=6;
@@ -174,14 +175,14 @@ function updatePoseDisplay(){
     breathPill.className='flex items-center gap-2 px-4 py-1.5 rounded-full border mb-5 sm:mb-6 text-sm font-semibold tracking-wide shadow-sm bg-sage-100 text-sage-800 border-sage-400';
     breathIcon.style.transform='rotate(0deg)';pacerOuter.classList.add('breathe-inhale');pacerMiddle.classList.add('breathe-inhale');
   }else if(pose.breathType==='exhale'){
-    breathPill.className='flex items-center gap-2 px-4 py-1.5 rounded-full border mb-5 sm:mb-6 text-sm font-semibold tracking-wide shadow-sm bg-terracotta-400/20 text-terracotta-600 border-terracotta-300';
+    breathPill.className='flex items-center gap-2 px-4 py-1.5 rounded-full border mb-5 sm:mb-6 text-sm font-semibold tracking-wide shadow-sm bg-terracotta-400/20 text-terracotta-600 border-terracotta-400';
     breathIcon.style.transform='rotate(180deg)';pacerOuter.classList.add('breathe-exhale');pacerMiddle.classList.add('breathe-exhale');
   }else{
     breathPill.className='flex items-center gap-2 px-4 py-1.5 rounded-full border mb-5 sm:mb-6 text-sm font-semibold tracking-wide shadow-sm bg-earth-200/80 text-earth-800 border-earth-300';
     breathIcon.style.transform='rotate(90deg)';pacerOuter.classList.add('breathe-neutral');pacerMiddle.classList.add('breathe-neutral');
   }
   document.querySelectorAll('.thumb-btn').forEach((btn,idx)=>{
-    btn.className=`thumb-btn flex-shrink-0 px-3 py-1.5 rounded-xl text-center border font-medium ${idx===currentPoseIndex?'bg-sage-600 text-earth-50 border-sage-600 shadow-sm':'bg-white text-earth-700 border-earth-200'}`;
+    btn.className=`thumb-btn flex-shrink-0 px-3 py-1.5 rounded-xl text-center border font-medium ${idx===currentPoseIndex?'bg-sage-600 text-earth-50 border-sage-600 shadow-sm':'bg-white text-earth-700 border-earth-200 hover:border-sage-400'}`;
   });
 }
 function formatTime(s){return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;}
