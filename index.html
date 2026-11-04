@@ -99,7 +99,7 @@ const POSES = [
 { id:6,sanskrit:"Ashtanga Namaskara",english:"Eight-Limbed Pose",breath:"Exhale",breathType:"exhale",voicePrompt:"Pose 6. Exhale. Lower knees, chest, and chin toward the floor.",instruction:"Lower knees, chest, and chin toward the mat, keeping hips slightly lifted. Modify as needed.",svg:'<circle cx="25" cy="54" r="5"/><path d="M28 62 L40 68 L56 50 L75 66 L86 68"/><line x1="36" y1="60" x2="35" y2="70"/><line x1="15" y1="70" x2="92" y2="70"/>'},
 { id:7,sanskrit:"Bhujangasana",english:"Cobra Pose",breath:"Inhale",breathType:"inhale",voicePrompt:"Pose 7. Inhale. Slide forward into Cobra pose. Open the chest.",instruction:"Inhale, slide forward and lift your chest into Cobra. Keep shoulders away from ears and use a comfortable height.",svg:'<circle cx="34" cy="35" r="6"/><path d="M34 41 Q40 56 60 65 L88 68"/><line x1="40" y1="50" x2="36" y2="68"/><line x1="20" y1="68" x2="92" y2="68"/>'},
 { id:8,sanskrit:"Adho Mukha Svanasana",english:"Downward-Facing Dog",breath:"Exhale",breathType:"exhale",voicePrompt:"Pose 8. Exhale. Lift hips high into Downward-Facing Dog.",instruction:"Exhale and press into your hands, lifting hips toward the ceiling. Bend knees as needed.",svg:'<circle cx="32" cy="62" r="5"/><line x1="36" y1="60" x2="52" y2="35"/><line x1="52" y1="35" x2="75" y2="70"/><line x1="36" y1="60" x2="30" y2="70"/><line x1="20" y1="70" x2="88" y2="70"/>'},
-{ id:9,sanskrit:"Ashwa Sanchalanasana",english:"Equestrian Pose (Left Forward)",breath:"Inhale",breathType:"inhale",voicePrompt:"Pose 9. Inhale. Step the left foot forward between your hands.",instruction:"Inhale, bring the right foot forward between your hands, lower the back knee if comfortable, and lift your gaze.",svg:'<circle cx="58" cy="30" r="6"/><path d="M58 36 L52 55 L35 55 L32 75 M52 55 L75 70 L90 75"/><line x1="48" y1="45" x2="33" y2="75"/><line x1="15" y1="75" x2="95" y2="75"/>'},
+{ id:9,sanskrit:"Ashwa Sanchalanasana",english:"Equestrian Pose (Right Forward)",breath:"Inhale",breathType:"inhale",voicePrompt:"Pose 9. Inhale. Step the right foot forward between your hands.",instruction:"Inhale, bring the right foot forward between your hands, lower the back knee if comfortable, and lift your gaze.",svg:'<circle cx="58" cy="30" r="6"/><path d="M58 36 L52 55 L35 55 L32 75 M52 55 L75 70 L90 75"/><line x1="48" y1="45" x2="33" y2="75"/><line x1="15" y1="75" x2="95" y2="75"/>'},
 { id:10,sanskrit:"Padahastasana",english:"Hand to Foot Pose",breath:"Exhale",breathType:"exhale",voicePrompt:"Pose 10. Exhale. Bring the back foot forward into a standing forward fold.",instruction:"Exhale, step the back foot forward to meet the other foot and fold comfortably over your legs.",svg:'<circle cx="34" cy="62" r="6"/><path d="M48 90 L52 50 L38 60"/><line x1="38" y1="60" x2="35" y2="90"/><line x1="52" y1="50" x2="52" y2="90"/><line x1="28" y1="90" x2="60" y2="90"/>'},
 { id:11,sanskrit:"Hasta Uttanasana",english:"Raised Arms Pose",breath:"Inhale",breathType:"inhale",voicePrompt:"Pose 11. Inhale. Rise up, stretching arms overhead.",instruction:"Inhale and rise slowly, extending both arms overhead with a gentle, comfortable back arch.",svg:'<circle cx="43" cy="19" r="6"/><path d="M43 25 Q48 42 46 62 M44 32 L34 14 M44 32 L30 17"/><line x1="46" y1="62" x2="44" y2="92"/><line x1="46" y1="62" x2="51" y2="92"/><line x1="40" y1="92" x2="56" y2="92"/>'},
 { id:12,sanskrit:"Pranamasana",english:"Prayer Pose / Mountain",breath:"Exhale",breathType:"exhale",voicePrompt:"Pose 12. Exhale. Return to center prayer. Complete round.",instruction:"Exhale gently and bring your palms together at your heart. Pause and notice how you feel.",svg:'<circle cx="50" cy="18" r="6"/><line x1="50" y1="24" x2="50" y2="60"/><path d="M50 32 L44 42 L50 48 L56 42 Z"/><line x1="50" y1="60" x2="45" y2="92"/><line x1="50" y1="60" x2="55" y2="92"/><line x1="42" y1="92" x2="58" y2="92"/>'}
@@ -119,6 +119,22 @@ const playLabel=$('play-label'),playIcon=$('play-icon');
 const topTotalTime=$('top-total-time'),thumbnailsContainer=$('pose-thumbnails-container');
 const durationBtns=document.querySelectorAll('.duration-btn');
 let audioCtx=null;
+
+function getPoseForRound(pose){
+  const isEvenRound=roundCount % 2 === 0;
+  const direction=isEvenRound ? 'left' : 'right';
+  const nextPose={...pose};
+  if(nextPose.id===4){
+    nextPose.voicePrompt=`Pose 4. Inhale. Step the ${direction} leg back. Look upwards.`;
+    nextPose.instruction=`Breathe in, step the ${direction} leg back, lower the right knee if comfortable, and lift your chest and gaze.`;
+  }
+  if(nextPose.id===9){
+    nextPose.english=`Equestrian Pose (${direction === 'left' ? 'Left' : 'Right'} Forward)`;
+    nextPose.voicePrompt=`Pose 9. Inhale. Step the ${direction} foot forward between your hands.`;
+    nextPose.instruction=`Inhale, bring the ${direction} foot forward between your hands, lower the back knee if comfortable, and lift your gaze.`;
+  }
+  return nextPose;
+}
 
 function initAudio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();}
 function playSingingBowlChime(freq=528){
@@ -159,7 +175,7 @@ async function releaseScreenWakeLock(){
   $('wake-status').textContent='Screen awake is off.';
 }
 function updatePoseDisplay(){
-  const pose=POSES[currentPoseIndex];
+  const pose=getPoseForRound(POSES[currentPoseIndex]);
   poseSanskritEl.textContent=`${pose.id}. ${pose.sanskrit}`;
   poseEnglishEl.textContent=pose.english;poseInstructionsEl.textContent=pose.instruction;
   poseGraphicContainer.innerHTML=`<svg viewBox="0 0 100 100" class="w-full h-full stroke-current fill-none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${pose.svg}</svg>`;
@@ -188,19 +204,19 @@ function updatePoseDisplay(){
 function formatTime(s){return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;}
 function nextPose(){
   if(currentPoseIndex===11){roundCount++;currentPoseIndex=0;playSingingBowlChime(660);speakText(`Wonderful! Round ${roundCount-1} complete. Starting round ${roundCount}.`);}
-  else{currentPoseIndex++;playSingingBowlChime(528);speakText(POSES[currentPoseIndex].voicePrompt);}
+  else{currentPoseIndex++;playSingingBowlChime(528);speakText(getPoseForRound(POSES[currentPoseIndex]).voicePrompt);}
   timeLeft=poseDuration;updatePoseDisplay();
 }
 function prevPose(){
   if(currentPoseIndex>0)currentPoseIndex--;else if(roundCount>1){roundCount--;currentPoseIndex=11;}
-  timeLeft=poseDuration;updatePoseDisplay();playSingingBowlChime(440);speakText(POSES[currentPoseIndex].voicePrompt);
+  timeLeft=poseDuration;updatePoseDisplay();playSingingBowlChime(440);speakText(getPoseForRound(POSES[currentPoseIndex]).voicePrompt);
 }
-function jumpToPose(index){currentPoseIndex=index;timeLeft=poseDuration;updatePoseDisplay();if(isRunning){playSingingBowlChime(528);speakText(POSES[currentPoseIndex].voicePrompt);}}
+function jumpToPose(index){currentPoseIndex=index;timeLeft=poseDuration;updatePoseDisplay();if(isRunning){playSingingBowlChime(528);speakText(getPoseForRound(POSES[currentPoseIndex]).voicePrompt);}}
 function tick(){if(timeLeft>1){timeLeft--;poseTimerSecondsEl.textContent=timeLeft;}else nextPose();}
 function startTimer(){
   if(isRunning)return;initAudio();isRunning=true;sessionActive=true;requestScreenWakeLock();
   playLabel.textContent='Pause Flow';playIcon.textContent='Ⅱ';
-  speakText(POSES[currentPoseIndex].voicePrompt);playSingingBowlChime(528);
+  speakText(getPoseForRound(POSES[currentPoseIndex]).voicePrompt);playSingingBowlChime(528);
   mainTimer=setInterval(tick,1000);
   totalTimer=setInterval(()=>{totalElapsedSeconds++;topTotalTime.textContent=formatTime(totalElapsedSeconds);},1000);
 }
